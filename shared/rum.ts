@@ -88,6 +88,10 @@ export function startRum({ service, edgeUrl, sampleRatio = 1 }: RumOptions): boo
     "service.version": import.meta.env.VITE_RELEASE ?? "dev",
     "deployment.environment.name": import.meta.env.MODE === "development" ? "development" : "production",
     "telemetry.sdk.language": "webjs",
+    // Browsers driven by automation (the scheduled Playwright journeys)
+    // report navigator.webdriver; mark their telemetry so dashboards can
+    // split real users from synthetic checks.
+    ...(navigator.webdriver ? { "user_agent.synthetic.type": "test" } : {}),
   });
 
   const provider = new TracerProvider({

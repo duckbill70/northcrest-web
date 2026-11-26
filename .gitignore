@@ -4,3 +4,5 @@ dist
 .firebaserc
 *.tsbuildinfo
 .env.local
+test-results
+playwright-report
