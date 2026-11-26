@@ -13,7 +13,8 @@
     "build:booking": "vite build --mode booking",
     "build:status": "vite build --mode status",
     "typecheck": "tsc --noEmit",
-    "test": "vitest run"
+    "test": "vitest run",
+    "journeys": "playwright test"
   },
   "dependencies": {
     "@opentelemetry/api": "^1.10.0",
@@ -31,6 +32,7 @@
     "web-vitals": "^6.2.3"
   },
   "devDependencies": {
+    "@playwright/test": "^1.65.1",
     "@types/node": "^22.20.7",
     "@types/react": "^19.3.3",
     "@types/react-dom": "^19.3.0",

@@ -43,6 +43,27 @@ npm run typecheck && npm test && npm run build
 Run the APIs from northcrest-services on ports 8080 and 8081, or point the
 proxy elsewhere with `API_URL`.
 
+## Synthetic journeys
+
+`e2e/journeys.spec.ts` drives the apps the way a passenger would: search,
+book, find and cancel a flight, then check the departures and arrivals
+boards and one flight's status. The **Synthetic journeys** workflow runs
+them against the live sites every 30 minutes and after each successful
+deploy; it skips itself until `BOOKING_SITE` is set.
+
+Their real-user telemetry carries `user_agent.synthetic.type = "test"`
+(the browser reports `navigator.webdriver`), so dashboards can tell them
+from real passengers. Bookings use `synthetic@example.com` and are
+cancelled at the end of each run.
+
+```sh
+npm run dev:booking & npm run dev:status &   # plus both APIs
+npx playwright install chromium
+npm run journeys
+# or against the live sites:
+BOOKING_URL=https://<prefix>-booking.web.app STATUS_URL=https://<prefix>-status.web.app npm run journeys
+```
+
 ## Deploying
 
 Every push to `main` builds both apps and deploys them to Firebase Hosting.
