@@ -1,0 +1,42 @@
+{
+  "name": "northcrest-web",
+  "private": true,
+  "description": "Northcrest Air passenger web apps (fictional airline demo).",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev:booking": "vite --config vite.config.ts --mode booking",
+    "dev:status": "vite --config vite.config.ts --mode status",
+    "build": "npm run build:booking && npm run build:status",
+    "build:booking": "vite build --mode booking",
+    "build:status": "vite build --mode status",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@opentelemetry/api": "^1.10.0",
+    "@opentelemetry/core": "^3.1.1",
+    "@opentelemetry/exporter-metrics-otlp-http": "^0.301.2",
+    "@opentelemetry/exporter-trace-otlp-http": "^0.301.2",
+    "@opentelemetry/instrumentation": "^0.301.2",
+    "@opentelemetry/instrumentation-document-load": "^0.70.1",
+    "@opentelemetry/instrumentation-fetch": "^0.301.2",
+    "@opentelemetry/resources": "^3.1.1",
+    "@opentelemetry/sdk-metrics": "^3.1.1",
+    "@opentelemetry/sdk-trace": "^3.1.1",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "web-vitals": "^6.2.3"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.7",
+    "@types/react": "^19.3.3",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.3.0",
+    "typescript": "~5.9.3",
+    "vite": "^8.4.0",
+    "vitest": "^5.1.2"
+  }
+}
